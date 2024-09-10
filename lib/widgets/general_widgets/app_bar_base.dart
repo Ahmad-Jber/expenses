@@ -11,10 +11,10 @@ class AppBarBase extends AppBar {
   });
 
   @override
-  State<AppBarBase> createState() => _MedicalAppBarState();
+  State<AppBarBase> createState() => _AppBarBaseState();
 }
 
-class _MedicalAppBarState extends State<AppBarBase> {
+class _AppBarBaseState extends State<AppBarBase> {
   @override
   Widget build(BuildContext context) {
     return AppBar(

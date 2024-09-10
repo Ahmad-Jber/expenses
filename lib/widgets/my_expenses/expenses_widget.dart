@@ -5,7 +5,6 @@ import 'package:expenses/widgets/general_widgets/app_bar_base.dart';
 import 'package:expenses/widgets/my_expenses/expenses_list_widget.dart';
 import 'package:flutter/material.dart';
 
-
 class ExpensesWidget extends StatefulWidget {
   const ExpensesWidget({super.key});
 
@@ -205,11 +204,21 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
     return Scaffold(
       appBar: AppBarBase(
         centeredTitle: "Expenses",
-        leading: IconButton(onPressed: (){
-          showModalBottomSheet(context: context, builder: (context){
-            return const BottomSheetWidget();
-          });
-        }, icon: const Icon(Icons.add)),
+        leading: IconButton(
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(10.0),
+                  ),
+                ),
+                builder: (context) {
+                  return const BottomSheetWidget();
+                },
+              );
+            },
+            icon: const Icon(Icons.add)),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

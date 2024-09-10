@@ -90,3 +90,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  assets:
+    - lib/
+    - lib/models/
+    - lib/widgets/
+    - lib/widgets/my_expenses/
+    - lib/widgets/bottom_sheet/
+    - lib/widgets/general_widgets/
+

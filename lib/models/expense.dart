@@ -25,6 +25,6 @@ class Expense {
   }) : id = const Uuid().v8g();
 
   String get formattedDate {
-    return DateFormat.yMMMMd().format(date);
+    return DateFormat.yMMMMd().format(date!);
   }
 }

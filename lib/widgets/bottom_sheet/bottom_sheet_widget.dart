@@ -1,4 +1,4 @@
-import 'package:expenses/widgets/general_widgets/app_bar_base.dart';
+import 'package:expenses/widgets/bottom_sheet/bottom_sheet_form.dart';
 import 'package:flutter/material.dart';
 
 class BottomSheetWidget extends StatelessWidget {
@@ -7,9 +7,15 @@ class BottomSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarBase(
-        centeredTitle: "",
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.close),
+        ),
       ),
+      body: const BottomSheetForm(),
     );
   }
 }
