@@ -34,163 +34,13 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
         date: DateTime.now(),
         category: CategoryEnum.work,
       ),
-      Expense(
-        title: "England",
-        amount: 34.5678901,
-        date: DateTime.now(),
-        category: CategoryEnum.travel,
-      ),
-      Expense(
-        title: "School",
-        amount: 45.6789012,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-      ),
-      Expense(
-        title: "Windows 10",
-        amount: 56.7890123,
-        date: DateTime.now(),
-        category: CategoryEnum.license,
-      ),
-      Expense(
-        title: "Driving",
-        amount: 67.8901234,
-        date: DateTime.now(),
-        category: CategoryEnum.realLicense,
-      ),
-      Expense(
-        title: "Pizza",
-        amount: 78.9012345,
-        date: DateTime.now(),
-        category: CategoryEnum.food,
-      ),
-      Expense(
-        title: "University",
-        amount: 89.0123456,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 90.1234567,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-      ),
-      Expense(
-        title: "England",
-        amount: 1.2345678,
-        date: DateTime.now(),
-        category: CategoryEnum.travel,
-      ),
-      Expense(
-        title: "School",
-        amount: 2.3456789,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-      ),
-      Expense(
-        title: "Windows 10",
-        amount: 3.4567891,
-        date: DateTime.now(),
-        category: CategoryEnum.license,
-      ),
-      Expense(
-        title: "Driving",
-        amount: 4.5678902,
-        date: DateTime.now(),
-        category: CategoryEnum.realLicense,
-      ),
-      Expense(
-        title: "Pizza",
-        amount: 5.6789013,
-        date: DateTime.now(),
-        category: CategoryEnum.food,
-      ),
-      Expense(
-        title: "University",
-        amount: 6.7890124,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 7.8901235,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-      ),
-      Expense(
-        title: "England",
-        amount: 8.9012346,
-        date: DateTime.now(),
-        category: CategoryEnum.travel,
-      ),
-      Expense(
-        title: "School",
-        amount: 9.0123457,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-      ),
-      Expense(
-        title: "Windows 10",
-        amount: 10.1234568,
-        date: DateTime.now(),
-        category: CategoryEnum.license,
-      ),
-      Expense(
-        title: "Driving",
-        amount: 11.2345679,
-        date: DateTime.now(),
-        category: CategoryEnum.realLicense,
-      ),
-      Expense(
-        title: "Pizza",
-        amount: 12.3456781,
-        date: DateTime.now(),
-        category: CategoryEnum.food,
-      ),
-      Expense(
-        title: "University",
-        amount: 13.4567892,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 14.5678903,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-      ),
-      Expense(
-        title: "England",
-        amount: 15.6789014,
-        date: DateTime.now(),
-        category: CategoryEnum.travel,
-      ),
-      Expense(
-        title: "School",
-        amount: 16.7890125,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-      ),
-      Expense(
-        title: "Windows 10",
-        amount: 17.8901236,
-        date: DateTime.now(),
-        category: CategoryEnum.license,
-      ),
-      Expense(
-        title: "Driving",
-        amount: 18.9012347,
-        date: DateTime.now(),
-        category: CategoryEnum.realLicense,
-      ),
-      Expense(
-        title: "Pizza",
-        amount: 19.0123458,
-        date: DateTime.now(),
-        category: CategoryEnum.food,
-      ),
     ];
+  }
+
+  void _addExpense(Expense expense){
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
   }
 
   @override
@@ -214,7 +64,9 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
                   ),
                 ),
                 builder: (context) {
-                  return const BottomSheetWidget();
+                  return BottomSheetWidget(
+                    onAddExpense: _addExpense,
+                  );
                 },
               );
             },
