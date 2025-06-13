@@ -17,9 +17,6 @@ class ExpenseItemWidget extends StatelessWidget {
         vertical: 1,
       ),
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5)
-        ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 10,

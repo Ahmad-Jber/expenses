@@ -5,6 +5,7 @@ class Assets {
   static const String bottomSheetBottomSheetForm = 'lib/widgets/bottom_sheet/bottom_sheet_form.dart';
   static const String bottomSheetBottomSheetWidget = 'lib/widgets/bottom_sheet/bottom_sheet_widget.dart';
   static const String generalWidgetsAppBarBase = 'lib/widgets/general_widgets/app_bar_base.dart';
+  static const String generalWidgetsAppThemeBase = 'lib/widgets/general_widgets/app_theme_base.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
   static const String libMain = 'lib/main.dart';
   static const String modelsCategoryEnum = 'lib/models/category_enum.dart';

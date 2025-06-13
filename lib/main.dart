@@ -1,20 +1,43 @@
+import 'package:expenses/widgets/general_widgets/app_theme_base.dart';
 import 'package:expenses/widgets/my_expenses/expenses_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  var colorScheme = ColorScheme.fromSeed(seedColor: Colors.black12);
   runApp(
-    MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData().copyWith(
-        colorScheme: colorScheme,
-        appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: colorScheme.onPrimaryContainer,
-          foregroundColor: colorScheme.primaryContainer,
-        ),
-      ),
-      home: const ExpensesWidget(),
-    ),
+    MainWidget(),
   );
+}
+
+class MainWidget extends StatelessWidget {
+  MainWidget({super.key});
+
+  final ColorScheme lightColorScheme =
+      ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent);
+  final ColorScheme darkColorScheme =
+      ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent);
+  static final ValueNotifier<ThemeMode> themeNotifier =
+      ValueNotifier(ThemeMode.system);
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (BuildContext context, ThemeMode currentMode, Widget? child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.getThemeData(
+            lightColorScheme,
+            Colors.white70,
+          ),
+          darkTheme: AppTheme.getThemeData(
+            darkColorScheme,
+            Colors.black26,
+          ),
+          themeMode: currentMode,
+          home: const ExpensesWidget(),
+        );
+      },
+    );
+  }
 }
