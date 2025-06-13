@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class BottomSheetForm extends StatefulWidget {
-  const BottomSheetForm({super.key, required this.onAddExpense, required this.parentContext});
+  const BottomSheetForm(
+      {super.key, required this.onAddExpense, required this.parentContext});
 
   final void Function(Expense expense) onAddExpense;
   final BuildContext parentContext;
@@ -173,13 +174,14 @@ class _BottomSheetFormState extends State<BottomSheetForm>
               alignment: Alignment.center,
               child: ElevatedButton(
                   onPressed: () {
-                    bool isSuccess = true;
+                    bool isSuccess = false;
                     if (_selectedDate == null) {
-                      isSuccess = false;
                       setState(() {
                         iconColor = const Color(0XFFB91A1B);
                         dateTextColor = const Color(0XFFB91A1B);
                       });
+                    } else {
+                      isSuccess = true;
                     }
                     if (_formKey.currentState!.validate()) {
                       final String enteredTitle = _titleController.text;
@@ -187,17 +189,18 @@ class _BottomSheetFormState extends State<BottomSheetForm>
                         setState(() {
                           _titleError = "Enter title";
                         });
-                        isSuccess = false;
+                      } else {
+                        isSuccess = true;
                       }
                       late double enteredAmount;
                       try {
                         enteredAmount = double.parse(_amountController.text);
+                        isSuccess = true;
                       } catch (e) {
                         debugPrint(e.toString());
                         setState(() {
                           _amountError = "Invalid amount";
                         });
-                        isSuccess = false;
                       }
 
                       if (isSuccess) {
@@ -213,6 +216,7 @@ class _BottomSheetFormState extends State<BottomSheetForm>
                             amount: enteredAmount,
                             category: enteredCategory,
                             date: enteredDate,
+                            description: '',
                           ),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(

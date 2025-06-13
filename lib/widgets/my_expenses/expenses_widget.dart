@@ -1,7 +1,6 @@
 import 'package:expenses/models/category_enum.dart';
 import 'package:expenses/models/expense.dart';
 import 'package:expenses/widgets/bottom_sheet/bottom_sheet_widget.dart';
-import 'package:expenses/widgets/general_widgets/app_bar_base.dart';
 import 'package:expenses/widgets/my_expenses/expenses_list_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -27,12 +26,14 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
         amount: 12.3456789,
         date: DateTime.now(),
         category: CategoryEnum.education,
+        description: '',
       ),
       Expense(
         title: "Cheque",
         amount: 23.4567891,
         date: DateTime.now(),
         category: CategoryEnum.work,
+        description: '',
       ),
     ];
   }
@@ -40,6 +41,12 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
   void _addExpense(Expense expense){
     setState(() {
       _registeredExpenses.add(expense);
+    });
+  }
+
+  void _removeExpense(String id){
+    setState(() {
+      _registeredExpenses.removeWhere((element) => element.id==id);
     });
   }
 
@@ -52,8 +59,10 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarBase(
-        centeredTitle: "Expenses",
+      appBar: AppBar(
+        title: const Text(
+            "Expenses",
+        ),
         leading: IconButton(
             onPressed: () {
               showModalBottomSheet(
@@ -76,7 +85,10 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: ExpensesListWidget(expenses: _registeredExpenses),
+            child: ExpensesListWidget(
+              expenses: _registeredExpenses,
+              onRemoveExpense: _removeExpense,
+            ),
           )
         ],
       ),

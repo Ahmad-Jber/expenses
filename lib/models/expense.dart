@@ -19,13 +19,15 @@ class Expense {
   final double amount;
   final DateTime date;
   final CategoryEnum category;
+  final String description;
 
   Expense({
     required this.title,
     required this.amount,
     required this.date,
     required this.category,
-  }) : id = const Uuid().v8g();
+    required this.description
+  }) : id = const Uuid().v4();
 
   String get formattedDate {
     return formatter.format(date);
