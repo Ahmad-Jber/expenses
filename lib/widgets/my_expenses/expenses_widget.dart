@@ -1,6 +1,7 @@
 import 'package:expenses/models/category_enum.dart';
 import 'package:expenses/models/expense.dart';
 import 'package:expenses/widgets/bottom_sheet/bottom_sheet_widget.dart';
+import 'package:expenses/widgets/general_widgets/app_bar_base.dart';
 import 'package:expenses/widgets/my_expenses/expenses_list_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -59,10 +60,8 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-            "Expenses",
-        ),
+      appBar: AppBarBase(
+        centeredTitle: "Expenses",
         leading: IconButton(
             onPressed: () {
               showModalBottomSheet(
