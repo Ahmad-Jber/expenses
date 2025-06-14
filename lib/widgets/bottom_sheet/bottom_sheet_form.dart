@@ -1,3 +1,4 @@
+import 'package:expenses/extensions.dart';
 import 'package:expenses/models/category_enum.dart';
 import 'package:expenses/models/expense.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class _BottomSheetFormState extends State<BottomSheetForm>
   late AnimationController _controller;
   late TextEditingController _titleController;
   late TextEditingController _amountController;
+
   late GlobalKey<FormState> _formKey;
   String? _titleError;
   String? _amountError;
@@ -74,12 +76,6 @@ class _BottomSheetFormState extends State<BottomSheetForm>
                 errorText: _titleError,
                 border: const OutlineInputBorder(),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Enter title';
-                }
-                return null;
-              },
             ),
             const SizedBox(
               height: 10,
@@ -97,12 +93,6 @@ class _BottomSheetFormState extends State<BottomSheetForm>
                 errorText: _amountError,
                 border: const OutlineInputBorder(),
               ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Enter amount';
-                }
-                return null;
-              },
             ),
             const SizedBox(
               height: 5,
@@ -116,6 +106,9 @@ class _BottomSheetFormState extends State<BottomSheetForm>
                   );
                 },
               ).toList(),
+              hint: const Text(
+                'Select Category',
+              ),
               onChanged: (value) {
                 setState(() {
                   _selectedCategory = value;
@@ -126,12 +119,6 @@ class _BottomSheetFormState extends State<BottomSheetForm>
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
-              validator: (value) {
-                if (value == null) {
-                  return 'Enter category';
-                }
-                return null;
-              },
             ),
             const SizedBox(
               height: 5,
@@ -170,6 +157,20 @@ class _BottomSheetFormState extends State<BottomSheetForm>
             const SizedBox(
               height: 5,
             ),
+            TextFormField(
+              maxLines: 5,
+              textAlign: TextAlign.start,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                label: Text(
+                  "Description",
+                ),
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
             Container(
               alignment: Alignment.center,
               child: ElevatedButton(
@@ -185,7 +186,7 @@ class _BottomSheetFormState extends State<BottomSheetForm>
                     }
                     if (_formKey.currentState!.validate()) {
                       final String enteredTitle = _titleController.text;
-                      if (enteredTitle.trim().isEmpty) {
+                      if (_titleController.isWhitespace()) {
                         setState(() {
                           _titleError = "Enter title";
                         });
@@ -194,8 +195,14 @@ class _BottomSheetFormState extends State<BottomSheetForm>
                       }
                       late double enteredAmount;
                       try {
-                        enteredAmount = double.parse(_amountController.text);
-                        isSuccess = true;
+                        if (_amountController.isWhitespace()) {
+                          setState(() {
+                            _amountError = "Enter amount";
+                          });
+                        } else {
+                          enteredAmount = double.parse(_amountController.text);
+                          isSuccess = true;
+                        }
                       } catch (e) {
                         debugPrint(e.toString());
                         setState(() {

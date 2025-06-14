@@ -50,145 +50,21 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
         category: CategoryEnum.work,
         description: '',
       ),
-      Expense(
-        title: "University",
-        amount: 12.3456789,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-        description: '',
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 23.4567891,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-        description: '',
-      ),
-      Expense(
-        title: "University",
-        amount: 12.3456789,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-        description: '',
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 23.4567891,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-        description: '',
-      ),
-      Expense(
-        title: "University",
-        amount: 12.3456789,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-        description: '',
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 23.4567891,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-        description: '',
-      ),
-      Expense(
-        title: "University",
-        amount: 12.3456789,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-        description: '',
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 23.4567891,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-        description: '',
-      ),
-      Expense(
-        title: "University",
-        amount: 12.3456789,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-        description: '',
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 23.4567891,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-        description: '',
-      ),
-      Expense(
-        title: "University",
-        amount: 12.3456789,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-        description: '',
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 23.4567891,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-        description: '',
-      ),
-      Expense(
-        title: "University",
-        amount: 12.3456789,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-        description: '',
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 23.4567891,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-        description: '',
-      ),
-      Expense(
-        title: "University",
-        amount: 12.3456789,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-        description: '',
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 23.4567891,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-        description: '',
-      ),
-      Expense(
-        title: "University",
-        amount: 12.3456789,
-        date: DateTime.now(),
-        category: CategoryEnum.education,
-        description: '',
-      ),
-      Expense(
-        title: "Cheque",
-        amount: 23.4567891,
-        date: DateTime.now(),
-        category: CategoryEnum.work,
-        description: '',
-      ),
     ];
   }
 
-  void _addExpense(Expense expense){
+  void _addExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
     });
   }
 
-  void _removeExpense(String id){
-    setState(() {
-      _registeredExpenses.removeWhere((element) => element.id==id);
-    });
+  void _removeExpense(String id) {
+    setState(
+      () => _registeredExpenses.removeWhere(
+        (element) => element.id == id,
+      ),
+    );
   }
 
   @override

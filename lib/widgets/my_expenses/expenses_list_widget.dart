@@ -14,21 +14,29 @@ class ExpensesListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, int index) => Column(
-        children: [
-          Dismissible(
-            key: ValueKey(
-              expenses[index].id,
-            ),
-            child: ExpenseItemWidget(
-              expense: expenses[index],
-            ),
-            onDismissed: (direction) => onRemoveExpense(expenses[index].id),
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 5,
       ),
-      itemCount: expenses.length,
+      child: ListView.builder(
+        itemBuilder: (context, int index) => Column(
+          children: [
+            const SizedBox(
+              height: 5,
+            ),
+            Dismissible(
+              key: ValueKey(
+                expenses[index].id,
+              ),
+              child: ExpenseItemWidget(
+                expense: expenses[index],
+              ),
+              onDismissed: (direction) => onRemoveExpense(expenses[index].id),
+            ),
+          ],
+        ),
+        itemCount: expenses.length,
+      ),
     );
   }
 }

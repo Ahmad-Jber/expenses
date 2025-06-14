@@ -7,6 +7,7 @@ class Assets {
   static const String generalWidgetsAppBarBase = 'lib/widgets/general_widgets/app_bar_base.dart';
   static const String generalWidgetsAppThemeBase = 'lib/widgets/general_widgets/app_theme_base.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
+  static const String libExtensions = 'lib/extensions.dart';
   static const String libMain = 'lib/main.dart';
   static const String modelsCategoryEnum = 'lib/models/category_enum.dart';
   static const String modelsExpense = 'lib/models/expense.dart';
