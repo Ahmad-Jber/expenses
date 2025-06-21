@@ -1,6 +1,7 @@
 import 'package:expenses/models/category_enum.dart';
 import 'package:expenses/models/expense.dart';
 import 'package:expenses/widgets/bottom_sheet/bottom_sheet_widget.dart';
+import 'package:expenses/widgets/charts/chart.dart';
 import 'package:expenses/widgets/general_widgets/app_bar_base.dart';
 import 'package:expenses/widgets/my_expenses/expenses_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -37,17 +38,38 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
         description: '',
       ),
       Expense(
-        title: "University",
-        amount: 12.3456789,
+        title: "Driving License",
+        amount: 10.3456789,
         date: DateTime.now(),
-        category: CategoryEnum.education,
+        category: CategoryEnum.realLicense,
         description: '',
       ),
       Expense(
-        title: "Cheque",
-        amount: 23.4567891,
+        title: "Windows Activation Key",
+        amount: 28.4567891,
         date: DateTime.now(),
-        category: CategoryEnum.work,
+        category: CategoryEnum.license,
+        description: '',
+      ),
+      Expense(
+        title: "Jordan",
+        amount: 40.4567891,
+        date: DateTime.now(),
+        category: CategoryEnum.travel,
+        description: '',
+      ),
+      Expense(
+        title: "Burger",
+        amount: 10.4567891,
+        date: DateTime.now(),
+        category: CategoryEnum.food,
+        description: '',
+      ),
+      Expense(
+        title: "Meat",
+        amount: 20.4567891,
+        date: DateTime.now(),
+        category: CategoryEnum.food,
         description: '',
       ),
     ];
@@ -99,6 +121,9 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          ChartWidget(
+            expensesList: _registeredExpenses,
+          ),
           Expanded(
             child: ExpensesListWidget(
               expenses: _registeredExpenses,
