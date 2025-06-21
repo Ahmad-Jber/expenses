@@ -5,7 +5,10 @@ import 'package:expenses/widgets/charts/chart_bar.dart';
 import 'package:flutter/material.dart';
 
 class ChartWidget extends StatelessWidget {
-  const ChartWidget({super.key, required this.expensesList});
+  const ChartWidget({
+    super.key,
+    required this.expensesList,
+  });
 
   final List<Expense> expensesList;
 
@@ -32,40 +35,48 @@ class ChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      width: double.infinity,
-      height: 200,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Theme.of(context).colorScheme.primary,
-            Theme.of(context).colorScheme.primary.withValues(alpha: 0.4),
-          ],
-        ),
-        borderRadius: const BorderRadius.vertical(
-          bottom: Radius.circular(
-            5,
-          ),
-        ),
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                for (var element in expenseStatistics)
-                  ChartBarWidget(
-                    expensesStatistic: element,
-                    percentage: maxTotalAmounts != 0
-                        ? element.totalAmounts / maxTotalAmounts
-                        : 0,
-                  ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Container(
+          padding: const EdgeInsets.all(10),
+          width: double.infinity,
+          height: constraints.maxHeight,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Theme.of(context).colorScheme.primary,
+                Theme.of(context).colorScheme.primary.withValues(alpha: 0.4),
               ],
             ),
+            borderRadius: BorderRadius.vertical(
+              bottom: MediaQuery.of(context).size.width < 1000
+                  ? Radius.circular(
+                      5,
+                    )
+                  : Radius.circular(
+                      0,
+                    ),
+            ),
           ),
-        ],
-      ),
+          child: Column(
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    for (var element in expenseStatistics)
+                      ChartBarWidget(
+                        expensesStatistic: element,
+                        percentage: maxTotalAmounts != 0
+                            ? element.totalAmounts / maxTotalAmounts
+                            : 0,
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

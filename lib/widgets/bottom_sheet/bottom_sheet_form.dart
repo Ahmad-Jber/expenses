@@ -2,6 +2,7 @@ import 'package:expenses/extensions.dart';
 import 'package:expenses/models/category_enum.dart';
 import 'package:expenses/models/expense.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class BottomSheetForm extends StatefulWidget {
@@ -88,6 +89,9 @@ class _BottomSheetFormState extends State<BottomSheetForm>
                   controller: _amountController,
                   textAlign: TextAlign.start,
                   keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly, // 👈 Only allows 0-9
+                  ],
                   onChanged: (value) => setState(() {
                     _amountError = null;
                   }),

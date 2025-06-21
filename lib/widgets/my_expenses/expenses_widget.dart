@@ -2,6 +2,7 @@ import 'package:expenses/models/category_enum.dart';
 import 'package:expenses/models/expense.dart';
 import 'package:expenses/widgets/bottom_sheet/bottom_sheet_widget.dart';
 import 'package:expenses/widgets/charts/chart.dart';
+import 'package:expenses/widgets/charts/pie_chart_widget.dart';
 import 'package:expenses/widgets/general_widgets/app_bar_base.dart';
 import 'package:expenses/widgets/my_expenses/expenses_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late final List<Expense> _registeredExpenses;
+  late List<Widget> widgetChildren;
 
   @override
   void initState() {
@@ -118,20 +120,47 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
             },
             icon: const Icon(Icons.add)),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ChartWidget(
-            expensesList: _registeredExpenses,
-          ),
-          Expanded(
-            child: ExpensesListWidget(
-              expenses: _registeredExpenses,
-              onRemoveExpense: _removeExpense,
+      body: MediaQuery.of(context).size.width < 800
+          ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Expanded(
+                child: ChartWidget(
+                  expensesList: _registeredExpenses,
+                ),
+              ),
+              Expanded(
+                child: ExpensesListWidget(
+                  expenses: _registeredExpenses,
+                  onRemoveExpense: _removeExpense,
+                ),
+              )
+            ])
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: PieChartWidget(
+                          expensesList: _registeredExpenses,
+                        ),
+                      ),
+                      Expanded(
+                        child: ChartWidget(
+                          expensesList: _registeredExpenses,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: ExpensesListWidget(
+                    expenses: _registeredExpenses,
+                    onRemoveExpense: _removeExpense,
+                  ),
+                )
+              ],
             ),
-          )
-        ],
-      ),
     );
   }
 }

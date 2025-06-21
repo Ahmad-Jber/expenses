@@ -1,10 +1,18 @@
 import 'package:expenses/widgets/general_widgets/app_theme_base.dart';
 import 'package:expenses/widgets/my_expenses/expenses_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() {
-  runApp(
-    MainWidget(),
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+    ],
+  ).then(
+    (_) => runApp(
+      MainWidget(),
+    ),
   );
 }
 
