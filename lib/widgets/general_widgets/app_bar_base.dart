@@ -31,7 +31,7 @@ class _AppBarBaseState extends State<AppBarBase> {
           );
         },
         icon: Icon(
-          MainWidget.themeNotifier.value == ThemeMode.dark
+          MediaQuery.of(context).platformBrightness == Brightness.dark
               ? Icons.light_mode
               : Icons.dark_mode,
         ),
