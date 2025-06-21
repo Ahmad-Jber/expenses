@@ -12,9 +12,9 @@ class BottomSheetWidget extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: BottomSheetForm(
-        onAddExpense: onAddExpense,
-        parentContext: context,
-      ),
+          onAddExpense: onAddExpense,
+          parentContext: context,
+        ),
     );
   }
 }
