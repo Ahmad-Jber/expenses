@@ -145,6 +145,23 @@ class _ExpensesWidgetState extends State<ExpensesWidget>
                           expensesList: _registeredExpenses,
                         ),
                       ),
+                      SizedBox(
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          height: 20,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Theme.of(context).colorScheme.primary,
+                                Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withValues(alpha: 0.4),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                       Expanded(
                         child: ChartWidget(
                           expensesList: _registeredExpenses,
